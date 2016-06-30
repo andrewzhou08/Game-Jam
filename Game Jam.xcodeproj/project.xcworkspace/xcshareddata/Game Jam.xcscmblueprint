@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B08D61800457529246F89DA99CD2DDA23790F5B0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B08D61800457529246F89DA99CD2DDA23790F5B0" : 0,
+    "06988FA571AFCCDD74A2A5E093E402F16ECEB6BF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "10543CEA-E274-427F-AEFA-C6D5040FAE4B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B08D61800457529246F89DA99CD2DDA23790F5B0" : "Game%20Jam\/",
+    "06988FA571AFCCDD74A2A5E093E402F16ECEB6BF" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Game Jam",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Game Jam.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/andrewzhou08\/RobotWarsAI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "06988FA571AFCCDD74A2A5E093E402F16ECEB6BF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/andrewzhou08\/Game-Jam.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B08D61800457529246F89DA99CD2DDA23790F5B0"
+    }
+  ]
+}
