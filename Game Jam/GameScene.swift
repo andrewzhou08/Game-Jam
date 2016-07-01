@@ -18,10 +18,19 @@ class GameScene: SKScene {
     var touchNode: SKNode!
     var isTouched = false
     var touchLocation: CGPoint?
+    var levelNode: SKNode!
+    var cameraTarget: SKNode?
     
     override func didMoveToView(view: SKView) {
         characterNode = childNodeWithName("//player") as! SKSpriteNode
         touchNode = childNodeWithName("touchNode")
+        levelNode = childNodeWithName("levelNode")
+        cameraTarget = characterNode
+        
+        
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
+        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        levelNode.addChild(newLevel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -61,6 +70,11 @@ class GameScene: SKScene {
             characterNode.physicsBody?.velocity.dx = 200
         } else if(velX < -200) {
                 characterNode.physicsBody?.velocity.dx = -200
+        }
+        
+        if let ct = cameraTarget {
+            camera?.position = CGPoint(x:ct.position.x, y:ct.position.y)
+            print("ct-x: \(cameraTarget!.position.x), ct-y: \(cameraTarget!.position.y), x: \(characterNode.position.x), y: \(characterNode.position.y)")
         }
     }
 }

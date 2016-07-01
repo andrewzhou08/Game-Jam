@@ -32,6 +32,7 @@
 		49E6F25A1D25C007007A1090 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F24C1D25C007007A1090 /* SKTEffects.swift */; };
 		49E6F25B1D25C007007A1090 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F24D1D25C007007A1090 /* SKTTimingFunctions.swift */; };
 		49E6F25C1D25C007007A1090 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F24E1D25C007007A1090 /* Vector3.swift */; };
+		49E6F25E1D263663007A1090 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49E6F25D1D263663007A1090 /* Level1.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		49E6F24C1D25C007007A1090 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		49E6F24D1D25C007007A1090 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		49E6F24E1D25C007007A1090 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		49E6F25D1D263663007A1090 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				49B8EB621D21F95E008F69F5 /* Main.storyboard */,
 				49B8EB651D21F95E008F69F5 /* Assets.xcassets */,
 				49B8EB5C1D21F95E008F69F5 /* GameScene.sks */,
+				49E6F25D1D263663007A1090 /* Level1.sks */,
 				49E6F23D1D25BD9A007A1090 /* LargePlatform.sks */,
 				496112FB1D25B2D500BF3779 /* Player.sks */,
 				49B8EB671D21F95E008F69F5 /* LaunchScreen.storyboard */,
@@ -306,6 +309,7 @@
 				49B8EB641D21F95E008F69F5 /* Main.storyboard in Resources */,
 				49E6F23E1D25BD9A007A1090 /* LargePlatform.sks in Resources */,
 				496112FC1D25B2D500BF3779 /* Player.sks in Resources */,
+				49E6F25E1D263663007A1090 /* Level1.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
