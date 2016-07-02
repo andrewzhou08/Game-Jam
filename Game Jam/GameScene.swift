@@ -20,6 +20,9 @@ class GameScene: SKScene {
     var touchNode: SKNode!
     var isTouched = false
     var touchLocation: CGPoint?
+    var startTouchLocation: CGPoint?
+    var endTouchLocation: CGPoint?
+    
     var levelNode: SKNode!
     var cameraTarget: SKNode?
     
@@ -50,20 +53,30 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         isTouched = true
         for touch in touches {
-            touchLocation = touch.locationInNode(self)
+            touchLocation = touch.locationInView(view)
+            startTouchLocation = touch.locationInView(view)
         }
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
-            touchLocation = touch.locationInNode(self)
+            touchLocation = touch.locationInView(view)
+            
+            //Jumping
+            endTouchLocation = touch.locationInView(view)
+            print(endTouchLocation!.y - startTouchLocation!.y)
+            if(endTouchLocation!.y - startTouchLocation!.y <= -100) {
+                print("JUMPED!")
+                player.avatar.physicsBody?.applyImpulse(CGVectorMake(0, 50))
+                startTouchLocation = CGPoint(x: 0, y: 0)
+            }
         }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         isTouched = false
         for touch in touches {
-            touchLocation = touch.locationInNode(self)
+            touchLocation = touch.locationInView(view)
         }
     }
    
@@ -71,19 +84,19 @@ class GameScene: SKScene {
         
         
         if let loc = touchLocation {
-            if(loc.x < player.avatar.position.x + 284 && isTouched) {
+            if(loc.x < 284 && isTouched) {
                 player.avatar.physicsBody?.applyImpulse(CGVectorMake(-1, 0))
             }
-            if(loc.x >= player.avatar.position.x + 284 && isTouched){
+            if(loc.x >= 284 && isTouched){
                 player.avatar.physicsBody?.applyImpulse(CGVectorMake(1, 0))
             }
         }
         
         let velX = player.avatar.physicsBody?.velocity.dx ?? 0
-        if(velX > 200) {
-            player.avatar.physicsBody?.velocity.dx = 200
-        } else if(velX < -200) {
-                player.avatar.physicsBody?.velocity.dx = -200
+        if(velX > 300) {
+            player.avatar.physicsBody?.velocity.dx = 300
+        } else if(velX < -300) {
+                player.avatar.physicsBody?.velocity.dx = -300
         }
         
         if let ct = cameraTarget {
