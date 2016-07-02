@@ -14,7 +14,9 @@ enum GameState {
 
 class GameScene: SKScene {
     
-    var characterNode: SKSpriteNode!
+    //var characterNode: SKSpriteNode!
+    //var characterReferenceNode: SKReferenceNode!
+    var player: MSReferenceNode!
     var touchNode: SKNode!
     var isTouched = false
     var touchLocation: CGPoint?
@@ -22,10 +24,22 @@ class GameScene: SKScene {
     var cameraTarget: SKNode?
     
     override func didMoveToView(view: SKView) {
-        characterNode = childNodeWithName("//player") as! SKSpriteNode
+        //characterNode = childNodeWithName("//player") as! SKSpriteNode
+        //characterReferenceNode = childNodeWithName("playerNode") as! SKReferenceNode
         touchNode = childNodeWithName("touchNode")
         levelNode = childNodeWithName("levelNode")
-        cameraTarget = characterNode
+        
+        let resourcePlayerPath = NSBundle.mainBundle().pathForResource("Player", ofType: "sks")
+        player = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePlayerPath!))
+        player.position = CGPoint(x: 284, y: 160)
+        
+        addChild(player)
+        
+        cameraTarget = player.avatar
+        
+        //print("ct: \(cameraTarget?.position), cn: \(characterReferenceNode.position)")
+        cameraTarget = player.avatar
+        //print("ct: \(cameraTarget?.position), cn: \(characterReferenceNode.position)")
         
         
         let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
@@ -54,27 +68,36 @@ class GameScene: SKScene {
     }
    
     override func update(currentTime: CFTimeInterval) {
+        
+        
         if let loc = touchLocation {
-            if(loc.x < 284 && isTouched) {
-                characterNode.physicsBody?.applyImpulse(CGVectorMake(-1, 0))
-                print("loc: \(loc)")
+            if(loc.x < player.avatar.position.x + 284 && isTouched) {
+                player.avatar.physicsBody?.applyImpulse(CGVectorMake(-1, 0))
             }
-            if(loc.x >= 284 && isTouched){
-                characterNode.physicsBody?.applyImpulse(CGVectorMake(1, 0))
-                print("loc: \(loc)")
+            if(loc.x >= player.avatar.position.x + 284 && isTouched){
+                player.avatar.physicsBody?.applyImpulse(CGVectorMake(1, 0))
             }
         }
         
-        let velX = characterNode.physicsBody?.velocity.dx ?? 0
+        let velX = player.avatar.physicsBody?.velocity.dx ?? 0
         if(velX > 200) {
-            characterNode.physicsBody?.velocity.dx = 200
+            player.avatar.physicsBody?.velocity.dx = 200
         } else if(velX < -200) {
-                characterNode.physicsBody?.velocity.dx = -200
+                player.avatar.physicsBody?.velocity.dx = -200
         }
         
         if let ct = cameraTarget {
-            camera?.position = CGPoint(x:ct.position.x, y:ct.position.y)
-            print("ct-x: \(cameraTarget!.position.x), ct-y: \(cameraTarget!.position.y), x: \(characterNode.position.x), y: \(characterNode.position.y)")
+            var cameraPoint = CGPoint(x:ct.position.x + 284, y:ct.position.y + 200)
+            if cameraPoint.x <= 285 {
+                cameraPoint.x = 285
+            }
+            if cameraPoint.y <= 200 {
+                cameraPoint.y = 200
+            }
+            
+            camera?.position = cameraPoint
+            //print("ct: \(ct.position), cn: \(characterReferenceNode.position)")
         }
+        //print(player.avatar.position)
     }
 }
