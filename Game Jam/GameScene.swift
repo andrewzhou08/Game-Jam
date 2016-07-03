@@ -12,42 +12,44 @@ enum GameState {
     case Title, Level1, GameOver
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //var characterNode: SKSpriteNode!
     //var characterReferenceNode: SKReferenceNode!
     var player: MSReferenceNode!
-    var touchNode: SKNode!
     var isTouched = false
+    var canJump = true
+    var canSpring = true
     var touchLocation: CGPoint?
     var startTouchLocation: CGPoint?
     var endTouchLocation: CGPoint?
-    
+
+    var scrollLayer: SKNode!
     var levelNode: SKNode!
     var cameraTarget: SKNode?
     
     override func didMoveToView(view: SKView) {
         //characterNode = childNodeWithName("//player") as! SKSpriteNode
         //characterReferenceNode = childNodeWithName("playerNode") as! SKReferenceNode
-        touchNode = childNodeWithName("touchNode")
         levelNode = childNodeWithName("levelNode")
+        scrollLayer = childNodeWithName("scrollLayer")
         
         let resourcePlayerPath = NSBundle.mainBundle().pathForResource("Player", ofType: "sks")
         player = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePlayerPath!))
         player.position = CGPoint(x: 284, y: 160)
         
+        physicsWorld.contactDelegate = self
+        
         addChild(player)
         
         cameraTarget = player.avatar
-        
-        //print("ct: \(cameraTarget?.position), cn: \(characterReferenceNode.position)")
-        cameraTarget = player.avatar
-        //print("ct: \(cameraTarget?.position), cn: \(characterReferenceNode.position)")
         
         
         let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
         let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
         levelNode.addChild(newLevel)
+        
+        loadLevel1()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -64,9 +66,8 @@ class GameScene: SKScene {
             
             //Jumping
             endTouchLocation = touch.locationInView(view)
-            print(endTouchLocation!.y - startTouchLocation!.y)
-            if(endTouchLocation!.y - startTouchLocation!.y <= -100) {
-                print("JUMPED!")
+            if(endTouchLocation!.y - startTouchLocation!.y <= -100 && canJump) {
+                canJump = false
                 player.avatar.physicsBody?.applyImpulse(CGVectorMake(0, 50))
                 startTouchLocation = CGPoint(x: 0, y: 0)
             }
@@ -109,8 +110,50 @@ class GameScene: SKScene {
             }
             
             camera?.position = cameraPoint
-            //print("ct: \(ct.position), cn: \(characterReferenceNode.position)")
         }
-        //print(player.avatar.position)
+        if(player.avatar.position.y < -1000) {
+            die()
+        }
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        let contactA: SKPhysicsBody = contact.bodyA
+        let contactB: SKPhysicsBody = contact.bodyB
+        
+        //let nodeA = contactA.node as! SKSpriteNode
+        //let nodeB = contactB.node as! SKSpriteNode
+        
+        if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 2) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 2)) {
+            canJump = true
+            canSpring = true
+        }
+        
+        if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 4 && canSpring) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 4 && canSpring)) {
+            player.avatar.physicsBody?.applyImpulse(CGVectorMake(0, 100))
+            canSpring = false
+            canJump = false
+        }
+        
+        if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 16) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 16)) {
+            die()
+        }
+    }
+    
+    func die() {
+        player.removeFromParent()
+        let resourcePlayerPath = NSBundle.mainBundle().pathForResource("Player", ofType: "sks")
+        player = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePlayerPath!))
+        player.position = CGPoint(x: 284, y: 160)
+        addChild(player)
+        
+        cameraTarget = player.avatar
+    }
+    
+    
+    
+    func loadLevel1() {
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
+        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        levelNode.addChild(newLevel)
     }
 }
