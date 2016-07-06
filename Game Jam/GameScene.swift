@@ -23,16 +23,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchLocation: CGPoint?
     var startTouchLocation: CGPoint?
     var endTouchLocation: CGPoint?
+    var levelNumber = 1
 
     var scrollLayer: SKNode!
     var levelNode: SKNode!
     var cameraTarget: SKNode?
+    var restartButton: MSButtonNode!
+    var buttonNode: Button!
+    var doorNode: Door!
+    var level: Level!
     
     override func didMoveToView(view: SKView) {
         //characterNode = childNodeWithName("//player") as! SKSpriteNode
         //characterReferenceNode = childNodeWithName("playerNode") as! SKReferenceNode
         levelNode = childNodeWithName("levelNode")
         scrollLayer = childNodeWithName("scrollLayer")
+        restartButton = childNodeWithName("//restartButton") as! MSButtonNode
         
         let resourcePlayerPath = NSBundle.mainBundle().pathForResource("Player", ofType: "sks")
         player = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePlayerPath!))
@@ -44,12 +50,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         cameraTarget = player.avatar
         
+        if(level == 1){
+            loadInitialLevel()
+        }
         
-        let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
-        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
-        levelNode.addChild(newLevel)
+        buttonNode = childNodeWithName("//buttonNode") as! Button
+        doorNode = childNodeWithName("//doorNode") as! Door
         
-        loadLevel1()
+        buttonNode.connectDoor(doorNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -114,6 +122,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(player.avatar.position.y < -1000) {
             die()
         }
+        
+        restartButton.selectedHandler = {
+            self.die()
+        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -124,18 +136,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //let nodeB = contactB.node as! SKSpriteNode
         
         if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 2) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 2)) {
-            canJump = true
-            canSpring = true
+            let playerPoint = convertPoint(player.avatar.position, fromNode: player)
+            let difference = playerPoint.y-16 - contact.contactPoint.y
+            if(difference < 6 && difference > -6){
+                canJump = true
+                canSpring = true
+            } else {
+                canJump = false
+            }
         }
         
         if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 4 && canSpring) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 4 && canSpring)) {
             player.avatar.physicsBody?.applyImpulse(CGVectorMake(0, 100))
             canSpring = false
-            canJump = false
         }
         
         if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 16) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 16)) {
             die()
+        }
+        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 8 || contactA.categoryBitMask == 8 && contactB.categoryBitMask == 1) {
+            buttonNode.pressButton()
+        }
+        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 32 || contactA.categoryBitMask == 32 && contactB.categoryBitMask == 1) {
+            levelNumber += 1
+            loadLevel(levelNumber)
         }
     }
     
@@ -151,9 +175,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
-    func loadLevel1() {
-        let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
+    func loadInitialLevel() {
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(level)", ofType: "sks")
         let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
         levelNode.addChild(newLevel)
+        
+        player.avatar.position = CGPoint(x: 284, y: 160)
+    }
+    
+    func loadLevel(level: Int) {
+        let skView = self.view as SKView!
+        let scene = GameScene(fileNamed:"GameScene") as GameScene!
+        scene.scaleMode = .AspectFit
+        skView.showsPhysics = true
+        skView.showsDrawCount = false
+        skView.showsFPS = true
+        skView.presentScene(scene)
+        scene.levelNode.removeAllChildren()
+        
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(level)", ofType: "sks")
+        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        scene.levelNode.addChild(newLevel)
+        
+        scene.level = self.level
+        
+        scene.player.avatar.position = CGPoint(x: 284, y: 160)
     }
 }
