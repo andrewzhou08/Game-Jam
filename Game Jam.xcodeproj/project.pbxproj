@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491D6FCD1D2ECC7C0071FA79 /* MoveableBlock.sks in Resources */ = {isa = PBXBuildFile; fileRef = 491D6FCC1D2ECC7C0071FA79 /* MoveableBlock.sks */; };
 		496112FC1D25B2D500BF3779 /* Player.sks in Resources */ = {isa = PBXBuildFile; fileRef = 496112FB1D25B2D500BF3779 /* Player.sks */; };
 		496B92BB1D2C4AB5009788DD /* Button.sks in Resources */ = {isa = PBXBuildFile; fileRef = 496B92BA1D2C4AB5009788DD /* Button.sks */; };
 		496B92BD1D2C4C68009788DD /* SKTextureResample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B92BC1D2C4C68009788DD /* SKTextureResample.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		491D6FCC1D2ECC7C0071FA79 /* MoveableBlock.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MoveableBlock.sks; sourceTree = "<group>"; };
 		496112FB1D25B2D500BF3779 /* Player.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Player.sks; sourceTree = "<group>"; };
 		496B92BA1D2C4AB5009788DD /* Button.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Button.sks; sourceTree = "<group>"; };
 		496B92BC1D2C4C68009788DD /* SKTextureResample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTextureResample.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				4985C59A1D28CF2F00F310D6 /* Spring.sks */,
 				496B92BA1D2C4AB5009788DD /* Button.sks */,
 				49FDA28E1D2D68B8004631A7 /* Door.sks */,
+				491D6FCC1D2ECC7C0071FA79 /* MoveableBlock.sks */,
 			);
 			name = Platforms;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4985C5991D28CEF100F310D6 /* Spike.sks in Resources */,
+				491D6FCD1D2ECC7C0071FA79 /* MoveableBlock.sks in Resources */,
 				4985C5911D28C63C00F310D6 /* GrassPlatformTall.sks in Resources */,
 				4985C58F1D28C2F800F310D6 /* DirtPlatform.sks in Resources */,
 				49B8EB5D1D21F95E008F69F5 /* GameScene.sks in Resources */,

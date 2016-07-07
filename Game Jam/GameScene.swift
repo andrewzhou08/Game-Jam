@@ -29,13 +29,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var levelNode: SKNode!
     var cameraTarget: SKNode?
     var restartButton: MSButtonNode!
-    var buttonNode: Button!
-    var doorNode: Door!
     var level: Level!
+    var buttonNode: [Button]!
     
+    //Called when moved to view
     override func didMoveToView(view: SKView) {
-        //characterNode = childNodeWithName("//player") as! SKSpriteNode
-        //characterReferenceNode = childNodeWithName("playerNode") as! SKReferenceNode
+        view.showsPhysics = true
+        view.showsDrawCount = false
+        view.showsFPS = true
+        
         levelNode = childNodeWithName("levelNode")
         scrollLayer = childNodeWithName("scrollLayer")
         restartButton = childNodeWithName("//restartButton") as! MSButtonNode
@@ -50,14 +52,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         cameraTarget = player.avatar
         
-        if(level == 1){
+        if(levelNumber == 1){
             loadInitialLevel()
         }
-        
-        buttonNode = childNodeWithName("//buttonNode") as! Button
-        doorNode = childNodeWithName("//doorNode") as! Door
-        
-        buttonNode.connectDoor(doorNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -154,8 +151,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 16) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 16)) {
             die()
         }
-        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 8 || contactA.categoryBitMask == 8 && contactB.categoryBitMask == 1) {
-            buttonNode.pressButton()
+        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 8) {
+            let nodeB = contactB.node as! Button
+            for button in buttonNode {
+                if(button == nodeB) {
+                    nodeB.pressButton()
+                }
+            }
+        }
+        if(contactA.categoryBitMask == 8 && contactB.categoryBitMask == 1) {
+            let nodeA = contactA.node as! Button
+            for button in buttonNode {
+                if(button == nodeA) {
+                    nodeA.pressButton()
+                }
+            }
         }
         if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 32 || contactA.categoryBitMask == 32 && contactB.categoryBitMask == 1) {
             levelNumber += 1
@@ -176,9 +186,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func loadInitialLevel() {
-        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(level)", ofType: "sks")
-        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(levelNumber)", ofType: "sks")
+        let newLevel = Level (URL: NSURL (fileURLWithPath: resourcePath!))
         levelNode.addChild(newLevel)
+        newLevel.addButtons()
+        buttonNode = newLevel.buttonNode
+        self.level = newLevel
         
         player.avatar.position = CGPoint(x: 284, y: 160)
     }
@@ -187,14 +200,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let skView = self.view as SKView!
         let scene = GameScene(fileNamed:"GameScene") as GameScene!
         scene.scaleMode = .AspectFit
-        skView.showsPhysics = true
-        skView.showsDrawCount = false
-        skView.showsFPS = true
+        scene.levelNumber = levelNumber
         skView.presentScene(scene)
-        scene.levelNode.removeAllChildren()
         
-        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(level)", ofType: "sks")
-        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(levelNumber)", ofType: "sks")
+        let newLevel = Level(URL: NSURL (fileURLWithPath: resourcePath!))
+        newLevel.addButtons()
+        buttonNode = newLevel.buttonNode
+        self.level = newLevel
         scene.levelNode.addChild(newLevel)
         
         scene.level = self.level
