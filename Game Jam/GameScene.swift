@@ -34,9 +34,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Called when moved to view
     override func didMoveToView(view: SKView) {
-        view.showsPhysics = true
-        view.showsDrawCount = false
-        view.showsFPS = true
         
         levelNode = childNodeWithName("levelNode")
         scrollLayer = childNodeWithName("scrollLayer")
@@ -99,10 +96,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let velX = player.avatar.physicsBody?.velocity.dx ?? 0
-        if(velX > 300) {
-            player.avatar.physicsBody?.velocity.dx = 300
-        } else if(velX < -300) {
-                player.avatar.physicsBody?.velocity.dx = -300
+        if(velX > 300 && isTouched) {
+            player.avatar.physicsBody?.velocity.dx -= 5
+        } else if(velX < -300 && isTouched) {
+            player.avatar.physicsBody?.velocity.dx += 5
         }
         
         if let ct = cameraTarget {
@@ -112,6 +109,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if cameraPoint.y <= 200 {
                 cameraPoint.y = 200
+            }
+            if cameraPoint.y >= 2200 {
+                cameraPoint.y = 2200
             }
             
             camera?.position = cameraPoint
@@ -170,6 +170,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 32 || contactA.categoryBitMask == 32 && contactB.categoryBitMask == 1) {
             levelNumber += 1
             loadLevel(levelNumber)
+        }
+        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 64 || contactA.categoryBitMask == 64 && contactB.categoryBitMask == 1) {
+            player.avatar.physicsBody?.applyImpulse(CGVectorMake(100,0))
         }
     }
     
