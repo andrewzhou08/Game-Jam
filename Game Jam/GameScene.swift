@@ -31,13 +31,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartButton: MSButtonNode!
     var level: Level!
     var buttonNode: [Button]!
+    var enemyNodes: [SKSpriteNode]!
+    var enemyNumber = 1
     
     //Called when moved to view
     override func didMoveToView(view: SKView) {
         
+        //Initialize all 
         levelNode = childNodeWithName("levelNode")
         scrollLayer = childNodeWithName("scrollLayer")
         restartButton = childNodeWithName("//restartButton") as! MSButtonNode
+        
+        
+        while(true) {
+            let enemyReferenceNode = childNodeWithName("//enemy\(enemyNumber)")
+            if(enemyReferenceNode == nil) {break}
+            enemyNodes.append(enemyReferenceNode?.childNodeWithName("avatar") as! SKSpriteNode)
+            enemyNumber += 1
+        }
+        
         
         let resourcePlayerPath = NSBundle.mainBundle().pathForResource("Player", ofType: "sks")
         player = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePlayerPath!))
@@ -74,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 startTouchLocation = CGPoint(x: 0, y: 0)
             }
         }
+        
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -95,13 +108,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        let velX = player.avatar.physicsBody?.velocity.dx ?? 0
-        if(velX > 300 && isTouched) {
-            player.avatar.physicsBody?.velocity.dx -= 5
-        } else if(velX < -300 && isTouched) {
-            player.avatar.physicsBody?.velocity.dx += 5
-        }
-        
         if let ct = cameraTarget {
             var cameraPoint = CGPoint(x:ct.position.x + 284, y:ct.position.y + 200)
             if cameraPoint.x <= 285 {
@@ -120,8 +126,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             die()
         }
         
+        //print(player.avatar.physicsBody?.velocity)
+        
         restartButton.selectedHandler = {
-            self.die()
+            self.loadLevel(self.levelNumber)
         }
     }
     
@@ -138,8 +146,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if(difference < 6 && difference > -6){
                 canJump = true
                 canSpring = true
-            } else {
-                canJump = false
             }
         }
         
@@ -171,7 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             levelNumber += 1
             loadLevel(levelNumber)
         }
-        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 64 || contactA.categoryBitMask == 64 && contactB.categoryBitMask == 1) {
+        if(contactA.categoryBitMask == 1 && contactB.categoryBitMask == 128 || contactA.categoryBitMask == 128 && contactB.categoryBitMask == 1) {
             player.avatar.physicsBody?.applyImpulse(CGVectorMake(100,0))
         }
     }
@@ -209,11 +215,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let resourcePath = NSBundle.mainBundle().pathForResource("Level\(levelNumber)", ofType: "sks")
         let newLevel = Level(URL: NSURL (fileURLWithPath: resourcePath!))
         newLevel.addButtons()
-        buttonNode = newLevel.buttonNode
-        self.level = newLevel
+        scene.buttonNode = newLevel.buttonNode
+        scene.level = newLevel
         scene.levelNode.addChild(newLevel)
-        
-        scene.level = self.level
         
         scene.player.avatar.position = CGPoint(x: 284, y: 160)
     }

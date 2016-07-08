@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		490F94971D2EF97E005F58F0 /* SpeedBoost.sks in Resources */ = {isa = PBXBuildFile; fileRef = 490F94961D2EF97E005F58F0 /* SpeedBoost.sks */; };
 		491D6FCD1D2ECC7C0071FA79 /* MoveableBlock.sks in Resources */ = {isa = PBXBuildFile; fileRef = 491D6FCC1D2ECC7C0071FA79 /* MoveableBlock.sks */; };
+		49516B821D300BE10020FE7B /* Boulder.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49516B811D300BE10020FE7B /* Boulder.sks */; };
 		496112FC1D25B2D500BF3779 /* Player.sks in Resources */ = {isa = PBXBuildFile; fileRef = 496112FB1D25B2D500BF3779 /* Player.sks */; };
 		496B92BB1D2C4AB5009788DD /* Button.sks in Resources */ = {isa = PBXBuildFile; fileRef = 496B92BA1D2C4AB5009788DD /* Button.sks */; };
 		496B92BD1D2C4C68009788DD /* SKTextureResample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B92BC1D2C4C68009788DD /* SKTextureResample.swift */; };
@@ -20,6 +21,7 @@
 		4985C5971D28CE8600F310D6 /* StonePlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4985C5961D28CE8600F310D6 /* StonePlatform.sks */; };
 		4985C5991D28CEF100F310D6 /* Spike.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4985C5981D28CEF100F310D6 /* Spike.sks */; };
 		4985C59B1D28CF2F00F310D6 /* Spring.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4985C59A1D28CF2F00F310D6 /* Spring.sks */; };
+		499528931D2F1F9100BD64A4 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 499528921D2F1F9100BD64A4 /* Level1.sks */; };
 		49B8EB5B1D21F95E008F69F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B8EB5A1D21F95E008F69F5 /* AppDelegate.swift */; };
 		49B8EB5D1D21F95E008F69F5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49B8EB5C1D21F95E008F69F5 /* GameScene.sks */; };
 		49B8EB5F1D21F95E008F69F5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B8EB5E1D21F95E008F69F5 /* GameScene.swift */; };
@@ -30,7 +32,7 @@
 		49B8EB741D21F95F008F69F5 /* Game_JamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B8EB731D21F95F008F69F5 /* Game_JamTests.swift */; };
 		49B8EB7F1D21F95F008F69F5 /* Game_JamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B8EB7E1D21F95F008F69F5 /* Game_JamUITests.swift */; };
 		49CB3D9E1D2EEC9300B64E9F /* Ramp.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49CB3D9D1D2EEC9300B64E9F /* Ramp.sks */; };
-		49D93D221D2D9B2D00736517 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49D93D211D2D9B2D00736517 /* Level1.sks */; };
+		49D93D221D2D9B2D00736517 /* LeveLTROLL.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49D93D211D2D9B2D00736517 /* LeveLTROLL.sks */; };
 		49D93D241D2DBE4F00736517 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D93D231D2DBE4F00736517 /* Level.swift */; };
 		49E6F23E1D25BD9A007A1090 /* LargePlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49E6F23D1D25BD9A007A1090 /* LargePlatform.sks */; };
 		49E6F24F1D25C007007A1090 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F2401D25C007007A1090 /* MSButtonNode.swift */; };
@@ -47,7 +49,12 @@
 		49E6F25A1D25C007007A1090 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F24C1D25C007007A1090 /* SKTEffects.swift */; };
 		49E6F25B1D25C007007A1090 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F24D1D25C007007A1090 /* SKTTimingFunctions.swift */; };
 		49E6F25C1D25C007007A1090 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E6F24E1D25C007007A1090 /* Vector3.swift */; };
-		49E6F25E1D263663007A1090 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49E6F25D1D263663007A1090 /* Level2.sks */; };
+		49E6F25E1D263663007A1090 /* LevelHARD.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49E6F25D1D263663007A1090 /* LevelHARD.sks */; };
+		49F885B61D30146800233C4F /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49F885B51D30146800233C4F /* Level2.sks */; };
+		49F885B81D30184000233C4F /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49F885B71D30184000233C4F /* Level5.sks */; };
+		49F885BA1D301CDD00233C4F /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49F885B91D301CDD00233C4F /* Level3.sks */; };
+		49F885BC1D3021C000233C4F /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49F885BB1D3021C000233C4F /* Level4.sks */; };
+		49F885BE1D3040FC00233C4F /* Enemy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49F885BD1D3040FC00233C4F /* Enemy.sks */; };
 		49FDA28D1D2D6769004631A7 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDA28C1D2D6769004631A7 /* Door.swift */; };
 		49FDA28F1D2D68B8004631A7 /* Door.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49FDA28E1D2D68B8004631A7 /* Door.sks */; };
 		49FDA2911D2D69C7004631A7 /* MyActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49FDA2901D2D69C7004631A7 /* MyActions.sks */; };
@@ -73,6 +80,7 @@
 /* Begin PBXFileReference section */
 		490F94961D2EF97E005F58F0 /* SpeedBoost.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedBoost.sks; sourceTree = "<group>"; };
 		491D6FCC1D2ECC7C0071FA79 /* MoveableBlock.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MoveableBlock.sks; sourceTree = "<group>"; };
+		49516B811D300BE10020FE7B /* Boulder.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Boulder.sks; sourceTree = "<group>"; };
 		496112FB1D25B2D500BF3779 /* Player.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Player.sks; sourceTree = "<group>"; };
 		496B92BA1D2C4AB5009788DD /* Button.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Button.sks; sourceTree = "<group>"; };
 		496B92BC1D2C4C68009788DD /* SKTextureResample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTextureResample.swift; sourceTree = "<group>"; };
@@ -84,6 +92,7 @@
 		4985C5961D28CE8600F310D6 /* StonePlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StonePlatform.sks; sourceTree = "<group>"; };
 		4985C5981D28CEF100F310D6 /* Spike.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spike.sks; sourceTree = "<group>"; };
 		4985C59A1D28CF2F00F310D6 /* Spring.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spring.sks; sourceTree = "<group>"; };
+		499528921D2F1F9100BD64A4 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		49B8EB571D21F95E008F69F5 /* Game Jam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game Jam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B8EB5A1D21F95E008F69F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B8EB5C1D21F95E008F69F5 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -100,7 +109,7 @@
 		49B8EB7E1D21F95F008F69F5 /* Game_JamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_JamUITests.swift; sourceTree = "<group>"; };
 		49B8EB801D21F95F008F69F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49CB3D9D1D2EEC9300B64E9F /* Ramp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ramp.sks; sourceTree = "<group>"; };
-		49D93D211D2D9B2D00736517 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		49D93D211D2D9B2D00736517 /* LeveLTROLL.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LeveLTROLL.sks; sourceTree = "<group>"; };
 		49D93D231D2DBE4F00736517 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		49E6F23D1D25BD9A007A1090 /* LargePlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LargePlatform.sks; sourceTree = "<group>"; };
 		49E6F2401D25C007007A1090 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
@@ -117,7 +126,12 @@
 		49E6F24C1D25C007007A1090 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		49E6F24D1D25C007007A1090 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		49E6F24E1D25C007007A1090 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
-		49E6F25D1D263663007A1090 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		49E6F25D1D263663007A1090 /* LevelHARD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelHARD.sks; sourceTree = "<group>"; };
+		49F885B51D30146800233C4F /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		49F885B71D30184000233C4F /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
+		49F885B91D301CDD00233C4F /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
+		49F885BB1D3021C000233C4F /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
+		49F885BD1D3040FC00233C4F /* Enemy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Enemy.sks; sourceTree = "<group>"; };
 		49FDA28C1D2D6769004631A7 /* Door.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		49FDA28E1D2D68B8004631A7 /* Door.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Door.sks; sourceTree = "<group>"; };
 		49FDA2901D2D69C7004631A7 /* MyActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyActions.sks; sourceTree = "<group>"; };
@@ -162,6 +176,7 @@
 				496B92BA1D2C4AB5009788DD /* Button.sks */,
 				49FDA28E1D2D68B8004631A7 /* Door.sks */,
 				491D6FCC1D2ECC7C0071FA79 /* MoveableBlock.sks */,
+				49516B811D300BE10020FE7B /* Boulder.sks */,
 				49CB3D9D1D2EEC9300B64E9F /* Ramp.sks */,
 			);
 			name = Platforms;
@@ -170,8 +185,13 @@
 		4985C5951D28C69400F310D6 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				49E6F25D1D263663007A1090 /* Level2.sks */,
-				49D93D211D2D9B2D00736517 /* Level1.sks */,
+				499528921D2F1F9100BD64A4 /* Level1.sks */,
+				49F885B51D30146800233C4F /* Level2.sks */,
+				49F885B91D301CDD00233C4F /* Level3.sks */,
+				49F885BB1D3021C000233C4F /* Level4.sks */,
+				49F885B71D30184000233C4F /* Level5.sks */,
+				49E6F25D1D263663007A1090 /* LevelHARD.sks */,
+				49D93D211D2D9B2D00736517 /* LeveLTROLL.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -213,6 +233,7 @@
 				4985C5951D28C69400F310D6 /* Levels */,
 				4985C5941D28C66E00F310D6 /* Platforms */,
 				496112FB1D25B2D500BF3779 /* Player.sks */,
+				49F885BD1D3040FC00233C4F /* Enemy.sks */,
 				490F94961D2EF97E005F58F0 /* SpeedBoost.sks */,
 				49FDA2901D2D69C7004631A7 /* MyActions.sks */,
 				49B8EB671D21F95E008F69F5 /* LaunchScreen.storyboard */,
@@ -375,6 +396,7 @@
 			files = (
 				4985C5991D28CEF100F310D6 /* Spike.sks in Resources */,
 				491D6FCD1D2ECC7C0071FA79 /* MoveableBlock.sks in Resources */,
+				49F885BE1D3040FC00233C4F /* Enemy.sks in Resources */,
 				4985C5911D28C63C00F310D6 /* GrassPlatformTall.sks in Resources */,
 				49CB3D9E1D2EEC9300B64E9F /* Ramp.sks in Resources */,
 				4985C58F1D28C2F800F310D6 /* DirtPlatform.sks in Resources */,
@@ -382,17 +404,23 @@
 				49B8EB691D21F95E008F69F5 /* LaunchScreen.storyboard in Resources */,
 				496B92BB1D2C4AB5009788DD /* Button.sks in Resources */,
 				49B8EB661D21F95E008F69F5 /* Assets.xcassets in Resources */,
-				49D93D221D2D9B2D00736517 /* Level1.sks in Resources */,
+				49D93D221D2D9B2D00736517 /* LeveLTROLL.sks in Resources */,
 				49FDA2911D2D69C7004631A7 /* MyActions.sks in Resources */,
 				49B8EB641D21F95E008F69F5 /* Main.storyboard in Resources */,
+				49516B821D300BE10020FE7B /* Boulder.sks in Resources */,
 				4985C5971D28CE8600F310D6 /* StonePlatform.sks in Resources */,
 				49E6F23E1D25BD9A007A1090 /* LargePlatform.sks in Resources */,
 				4985C58D1D28C2A400F310D6 /* GrassPlatform.sks in Resources */,
 				49FDA28F1D2D68B8004631A7 /* Door.sks in Resources */,
+				49F885BC1D3021C000233C4F /* Level4.sks in Resources */,
 				496112FC1D25B2D500BF3779 /* Player.sks in Resources */,
-				49E6F25E1D263663007A1090 /* Level2.sks in Resources */,
+				49E6F25E1D263663007A1090 /* LevelHARD.sks in Resources */,
+				49F885B81D30184000233C4F /* Level5.sks in Resources */,
+				49F885B61D30146800233C4F /* Level2.sks in Resources */,
+				499528931D2F1F9100BD64A4 /* Level1.sks in Resources */,
 				4985C59B1D28CF2F00F310D6 /* Spring.sks in Resources */,
 				4985C5931D28C65F00F310D6 /* StairsPlatform.sks in Resources */,
+				49F885BA1D301CDD00233C4F /* Level3.sks in Resources */,
 				490F94971D2EF97E005F58F0 /* SpeedBoost.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Level: SKReferenceNode, SKPhysicsContactDelegate {
+class Level: SKReferenceNode {
     
     var level = 1
     var buttonNodeReference: [SKReferenceNode?] = []
@@ -44,10 +44,6 @@ class Level: SKReferenceNode, SKPhysicsContactDelegate {
             print(buttonTemp)
         }
         
-        
-    }
-    
-    func didBeginContact(contact: SKPhysicsContact) {
         
     }
 }
