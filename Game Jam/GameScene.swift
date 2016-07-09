@@ -31,8 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartButton: MSButtonNode!
     var level: Level!
     var buttonNode: [Button]!
-    var enemyNodes: [SKSpriteNode]!
-    var enemyNumber = 1
+    var winLabel: SKLabelNode!
     
     //Called when moved to view
     override func didMoveToView(view: SKView) {
@@ -41,14 +40,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         levelNode = childNodeWithName("levelNode")
         scrollLayer = childNodeWithName("scrollLayer")
         restartButton = childNodeWithName("//restartButton") as! MSButtonNode
+        winLabel = childNodeWithName("//winLabel") as! SKLabelNode
         
-        
-        while(true) {
-            let enemyReferenceNode = childNodeWithName("//enemy\(enemyNumber)")
-            if(enemyReferenceNode == nil) {break}
-            enemyNodes.append(enemyReferenceNode?.childNodeWithName("avatar") as! SKSpriteNode)
-            enemyNumber += 1
-        }
+        winLabel.hidden = true
         
         
         let resourcePlayerPath = NSBundle.mainBundle().pathForResource("Player", ofType: "sks")
@@ -98,7 +92,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         
-        
         if let loc = touchLocation {
             if(loc.x < 284 && isTouched) {
                 player.avatar.physicsBody?.applyImpulse(CGVectorMake(-1, 0))
@@ -137,9 +130,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let contactA: SKPhysicsBody = contact.bodyA
         let contactB: SKPhysicsBody = contact.bodyB
         
-        //let nodeA = contactA.node as! SKSpriteNode
-        //let nodeB = contactB.node as! SKSpriteNode
         
+        //Jumping code
         if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 2) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 2)) {
             let playerPoint = convertPoint(player.avatar.position, fromNode: player)
             let difference = playerPoint.y-16 - contact.contactPoint.y
@@ -149,6 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        //PLAYER COLLISIONS
         if((contactA.categoryBitMask == 1 && contactB.categoryBitMask == 4 && canSpring) || (contactB.categoryBitMask == 1 && contactA.categoryBitMask == 4 && canSpring)) {
             player.avatar.physicsBody?.applyImpulse(CGVectorMake(0, 100))
             canSpring = false
@@ -206,6 +199,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func loadLevel(level: Int) {
+        
+        if(level >= 8) {
+            winLabel.hidden = false
+            return
+        }
+        
         let skView = self.view as SKView!
         let scene = GameScene(fileNamed:"GameScene") as GameScene!
         scene.scaleMode = .AspectFit

@@ -41,7 +41,6 @@ class Level: SKReferenceNode {
             buttonTemp.connectDoor(doorSprite)
             doorNumber += 1
             buttonNode.append(buttonTemp)
-            print(buttonTemp)
         }
         
         
